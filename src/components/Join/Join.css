@@ -1,0 +1,80 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Gil S", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 320px) and (max-width: 600px) {
+    .joinOuterContainer {
+        height: 100%;
+    }
+    .joinInnerContainer {
+        width: 100%;
+    }
+}
+
+#root {
+    height: 100vh;
+}
+
+.joinOuterContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #000030;
+}
+
+.joinOuterContainer > .joinInnerContainer {
+    width: 40%;
+}
+
+.joinOuterContainer > .joinInnerContainer > .heading {
+    color: #d3d3d3;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d3d3d3;
+}
+
+.joinOuterContainer .joinInput {
+    border-radius: 20px;
+    padding: 15px 20px;
+    width: 100%;
+}
+
+.button {
+    color: #d3d3d3;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2977ff;
+    padding: 20px;
+    border-radius: 20px;
+    display: inline-block;
+    border: none;
+    width: 100%;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.button:hover {
+    background: #1000ff;
+}
+/*# sourceMappingURL=Join.css.map */
