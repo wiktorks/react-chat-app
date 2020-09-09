@@ -1,5 +1,6 @@
 const conn = require("./database").connection;
 const query = require("./database").executeQuery;
+const routes = require("./routes");
 const passport = require("passport");
 const express = require("express");
 const app = express();
@@ -9,6 +10,8 @@ conn.connect((e) => {
 });
 
 app.use(express.json({ limit: "10kb" }));
+
+app.use("/auth", routes.authRouter);
 
 app.get("/", (req, res, next) => {
   res.json({ message: "success" });
