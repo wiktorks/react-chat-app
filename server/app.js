@@ -1,15 +1,10 @@
+const conn = require("./database").connection;
+const query = require("./database").executeQuery;
+const passport = require("passport");
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "password",
-  database: "db",
-});
-
-connection.connect((e) => {
+conn.connect((e) => {
   if (e) console.log(e);
 });
 
@@ -19,12 +14,14 @@ app.get("/", (req, res, next) => {
   res.json({ message: "success" });
 });
 
-app.get("/users", (req, res, next) => {
-  // res.json({ message: "success" });
-  connection.query("Show tables", (err, result, fields) => {
+app.get("/users", async (req, res, next) => {
+  try {
+    const result = await query("select * from user");
     console.log(result);
-  });
-  res.end();
+    res.end();
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 app.listen("3001", () => {
