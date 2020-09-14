@@ -1,0 +1,79 @@
+.Fon {
+    /*position: absolute;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-items: flex-start;
+    background-image: url("../../img/urban.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-attachment: initial;
+    height: 100vh;
+}
+.introdiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 100px;
+    font-style: oblique;
+    font-weight: 900;
+    font-family: URW Chancery L, cursive;
+    font-size: 100px;
+    color: transparent;
+    -webkit-text-stroke: 1px black;
+    background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+    -webkit-background-clip: text;
+}
+.btnIntro{
+    font-size: 20px;
+    font-family: serif;
+    font-style: normal;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.authbuttons{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 250px;
+}
+
+.btn {
+    margin: 10px;
+    display: inline-block;
+    width: 15em;
+    font-size: 80%;
+    color: rgba(255,255,255,.9);
+    text-shadow: #2e7ebd 0 1px 2px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.1;
+    white-space: pre-line;
+    padding: .7em 0;
+    border: 1px solid;
+    border-color: #60a3d8 #2970a9 #2970a9 #60a3d8;
+    border-radius: 6px;
+    outline: none;
+    background: #60a3d8 linear-gradient(#89bbe2, #60a3d8 50%, #378bce);
+    box-shadow: inset rgba(255,255,255,.5) 1px 1px;
+}
+.btn:first-line{
+    font-size: 170%;
+    font-weight: 700;
+}
+.btn:hover {
+    color: rgb(255,255,255);
+    background-image: linear-gradient(#9dc7e7, #74afdd 50%, #378bce);
+}
+.btn:active {
+    color: rgb(255,255,255);
+    border-color: #2970a9;
+    background-image: linear-gradient(#5796c8, #6aa2ce);
+    box-shadow: none;
+}
