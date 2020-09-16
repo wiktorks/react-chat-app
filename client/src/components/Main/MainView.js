@@ -5,7 +5,6 @@ class MainView extends Component {
 
     buttonsDiv = () => {
         return (
-
             <div className="authbuttons">
                 <div className="btnIntro">
                     Please login or register if you are here for the first time
@@ -14,7 +13,7 @@ class MainView extends Component {
                     this.props.history.push(`/login`)}, 500) }>Login</button>
 
                 <button className="btn" onClick={ e => window.setTimeout(() => {
-                    this.props.history.push(`/registration`)}, 500) }>Registration</button>
+                    this.props.history.push(`/registration`)}, 500) }>Register</button>
             </div>
         );
     }
@@ -26,7 +25,6 @@ class MainView extends Component {
                     </div>
         );
     }
-
 
     render() {
         return (

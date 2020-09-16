@@ -4,12 +4,12 @@
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-    align-items: flex-start;
+    align-items: center;
     background-image: url("../../img/urban.jpg");
     background-size: cover;
-    background-position: top center;
-    background-attachment: initial;
-    height: 100vh;
+    background-position: center;
+    background-attachment: scroll;
+    height: 150vh;
 }
 .introdiv{
     position: fixed;
