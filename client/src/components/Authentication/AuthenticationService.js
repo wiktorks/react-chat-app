@@ -1,5 +1,5 @@
 import { commonService } from './CommonService';
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = 'http://localhost:3001';
 const userKey = { key: 'user' };
 
 const login = (name, password) => {
@@ -46,7 +46,7 @@ const authenticateUser = (user) => {
 
 
 const register = (addUser) => {
-    const url = `${API_URL}/users`;
+    const url = `${API_URL}/auth/register`;
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
