@@ -5,10 +5,13 @@ const registerController = async (req, res, next) => {
   try {
     const { name, email, password, confirmPassword } = req.body;
 
+    if (!name || !email || !password || !confirmPassword)
+      res.status(400).send({ status: "error", message: "Missing credentials" });
+
     if (password != confirmPassword) {
       res
         .status(400)
-        .send({ status: "failure", message: "Passwords don't match" });
+        .send({ status: "error", message: "Passwords don't match" });
     } else {
       const userData = await executeQuery(
         `SELECT * FROM  Users WHERE Name = '${name}' OR Email = '${email}'`
@@ -18,7 +21,7 @@ const registerController = async (req, res, next) => {
         userData.forEach((item) => {
           if (item.Name === name) {
             res.status(400).send({
-              status: "failure",
+              status: "error",
               message: `Name ${name} already taken.`,
             });
           } else
@@ -34,18 +37,23 @@ const registerController = async (req, res, next) => {
         );
         res.status(200).send({
           status: "success",
-          message: "User account created.",
+          message: "User account created",
         });
       }
     }
   } catch (e) {
     console.log("Error: ", e);
-    res
-      .status(500)
-      .send({ status: "failure", message: "Internal server error" });
+    res.status(500).send({ status: "error", message: "Internal server error" });
   }
 };
 
-const loginController = (req, res, next) => {};
+const loginController = (req, res, next) => {
+  const { name, password } = req.body;
 
-module.exports = registerController;
+  if (!name || !password)
+    res.status(400).send({ status: "failure", message: "Missing credentials" });
+  else {
+  }
+};
+
+module.exports = { registerController, loginController };
