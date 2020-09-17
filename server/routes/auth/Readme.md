@@ -56,6 +56,8 @@ Used to save user credentials on the app's database and use them in authenticati
 }
 ```
 
+### Or
+
 **Code**: `500 INTERNAL SERVER ERROR`
 
 **Condition**: An unexpected error occurs on the server side
