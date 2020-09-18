@@ -22,7 +22,7 @@ app.get("/", (req, res, next) => {
 
 app.get("/users", async (req, res, next) => {
   try {
-    const result = await query("select * from user");
+    const result = await query("select * from Users");
     console.log(result);
     res.end();
   } catch (e) {

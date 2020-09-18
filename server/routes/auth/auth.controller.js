@@ -7,8 +7,7 @@ const registerController = async (req, res, next) => {
 
     if (!name || !email || !password || !confirmPassword)
       res.status(400).send({ status: "error", message: "Missing credentials" });
-
-    if (password != confirmPassword) {
+    else if (password != confirmPassword) {
       res
         .status(400)
         .send({ status: "error", message: "Passwords don't match" });
