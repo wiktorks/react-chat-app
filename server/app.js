@@ -1,6 +1,7 @@
 const conn = require("./database").connection;
 const query = require("./database").executeQuery;
 const routes = require("./routes");
+const cors = require("cors");
 const passport = require("passport");
 const express = require("express");
 const app = express();
@@ -8,6 +9,8 @@ const app = express();
 conn.connect((e) => {
   if (e) console.log(e);
 });
+
+app.use(cors());
 
 app.use(express.json({ limit: "10kb" }));
 
