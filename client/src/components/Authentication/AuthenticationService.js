@@ -3,22 +3,28 @@ const API_URL = 'http://localhost:3001';
 const userKey = { key: 'user' };
 
 const login = (name, password) => {
-    const url = `${API_URL}/login`;
+
+    const url = `${API_URL}/auth/login`;
+
     const loginBody = {
         name: name,
         password: password
     };
 
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    let raw = JSON.stringify(loginBody);
+    let myHeaders = {'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'http://localhost:3000'
+    };
+
+    // let raw = JSON.stringify(loginBody);
 
     const fetchData = {
+        body: JSON.stringify(loginBody),
         method: 'POST',
-        mode: "cors",
         headers: myHeaders,
-        body: raw,
+        mode: "cors",
+
         redirect: 'follow'
     };
 
@@ -48,18 +54,22 @@ const authenticateUser = (user) => {
 const register = (addUser) => {
     const url = `${API_URL}/auth/register`;
 
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    let raw = JSON.stringify(addUser);
+    let myHeaders = {'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'http://localhost:3000'
+};
 
     let fetchData = {
-        method: 'POST',
-        mode: "cors",
+       body: JSON.stringify(addUser),
+        mode: 'cors',
         headers: myHeaders,
-        body: raw,
+        method: 'POST',
         redirect: 'follow'
     };
+
+    console.log("fetchData:", fetchData)
+
 
     return fetch(url, fetchData)
         .then(response => commonService.checkStatus(response))

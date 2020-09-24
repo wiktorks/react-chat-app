@@ -12,6 +12,9 @@ const App = () => (
       <Route path="/" exact component={MainView} />
       <Route path="/registration" exact component={Registration} />
         <Route path="/login" exact component={Login} />
+
+        <Route path="/join" exact component={Join} />
+
     </Router>
 );
 

@@ -31,7 +31,10 @@ class Registration extends Component {
         let addUser = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
+
         };
 
         const response = await authService.register(addUser);
@@ -56,7 +59,6 @@ class Registration extends Component {
     handleConfirmPasswordChange(event) {
         this.setState({confirmPassword: event.target.value})
     }
-
 
     render() {
         return (
