@@ -11,26 +11,22 @@ const login = (name, password) => {
         password: password
     };
 
-
     let myHeaders = {'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin':'http://localhost:3000'
     };
 
-    // let raw = JSON.stringify(loginBody);
-
     const fetchData = {
         body: JSON.stringify(loginBody),
-        method: 'POST',
+        mode: 'cors',
         headers: myHeaders,
-        mode: "cors",
-
+        method: 'POST',
         redirect: 'follow'
     };
 
     return fetch(url, fetchData)
         .then(response => commonService.checkStatus(response))
-        .then(response => response.text())
+        .then(response => response.text()).then(response => console.log(response))
         .then(response => JSON.parse(response))
         .catch(error => {
             return {success: false, status: error.message}
@@ -44,6 +40,7 @@ const logout = () => {
 const isAuthenticated = () => {
     const userData = window.localStorage.getItem(userKey.key);
     return userData ? JSON.parse(userData) : null;
+
 }
 
 const authenticateUser = (user) => {
@@ -53,7 +50,6 @@ const authenticateUser = (user) => {
 
 const register = (addUser) => {
     const url = `${API_URL}/auth/register`;
-
 
     let myHeaders = {'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -67,9 +63,6 @@ const register = (addUser) => {
         method: 'POST',
         redirect: 'follow'
     };
-
-    console.log("fetchData:", fetchData)
-
 
     return fetch(url, fetchData)
         .then(response => commonService.checkStatus(response))
