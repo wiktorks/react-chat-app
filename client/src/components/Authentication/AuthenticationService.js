@@ -26,10 +26,9 @@ const login = (name, password) => {
 
     return fetch(url, fetchData)
         .then(response => commonService.checkStatus(response))
-        .then(response => response.text()).then(response => console.log(response))
-        .then(response => JSON.parse(response))
+        .then(response => response.json())
         .catch(error => {
-            return {success: false, status: error.message}
+            return {message: "Failure", status: error.message}
         });
 };
 
@@ -38,8 +37,8 @@ const logout = () => {
 }
 
 const isAuthenticated = () => {
-    const userData = window.localStorage.getItem(userKey.key);
-    return userData ? JSON.parse(userData) : null;
+    const user = window.localStorage.getItem(userKey.key);
+    return user ? JSON.parse(user) : null;
 
 }
 

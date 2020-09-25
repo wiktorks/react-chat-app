@@ -34,7 +34,7 @@ class Login extends Component {
         if (!(name && password)) return;
 
         const response = await authService.login(name, password);
-        if(response.success) {
+        if(response.message === "Success") {
             const user = {
                 id: response.id,
                 name: response.name,
@@ -42,7 +42,7 @@ class Login extends Component {
                 token: response.token
             }
 
-            authService.authenticateUser(user);
+            await authService.authenticateUser(user);
             this.redirectToJoinPage();
         } else {
             if(response.status === '404') {
