@@ -35,7 +35,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #000030;
+    background-image: url("../../img/urban.jpg");
 }
 
 .joinOuterContainer > .joinInnerContainer {
@@ -43,8 +43,8 @@ body {
 }
 
 .joinOuterContainer > .joinInnerContainer > .heading {
-    color: #d3d3d3;
-    font-size: 1.5em;
+    color: #000000;
+    font-size: 2em;
     padding-bottom: 10px;
     border-bottom: 2px solid #d3d3d3;
 }
@@ -55,26 +55,35 @@ body {
     width: 100%;
 }
 
-.button {
-    color: #d3d3d3;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #2977ff;
-    padding: 20px;
-    border-radius: 20px;
-    display: inline-block;
-    border: none;
-    width: 100%;
+.joinInnerContainer input[type="submit"]
+{
+    font-family: -apple-system, sans-serif;
+    width: 80%;
+    display: block;
+    margin: 15px auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px 30px;
+    border-radius: 6px;
+    border: 2px;
+    background: #60a3d8 linear-gradient(#89bbe2, #60a3d8 50%, #378bce);
+    box-shadow: inset rgba(255,255,255,.5) 1px 1px;
+    color: white;
+}
+.joinInnerContainer input[type="submit"]:hover {
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background-image: linear-gradient(#9dc7e7, #74afdd 50%, #378bce);
+
+}
+.joinInnerContainer input[type="submit"]:focus {
+    outline: none;
+    box-shadow: 3px 3px 10px #f3f3f3;
+    border-color: #2970a9;
+    background-image: linear-gradient(#5796c8, #6aa2ce);
 }
 
-.button:focus {
-    outline: 0;
-}
 
 .mt-20 {
     margin-top: 20px;
 }
-.button:hover {
-    background: #1000ff;
-}
-/*# sourceMappingURL=Join.css.map */
