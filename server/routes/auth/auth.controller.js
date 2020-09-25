@@ -67,11 +67,9 @@ const loginController = async (req, res, next) => {
           .status(401)
           .json({ status: "error", message: "User does not exists" });
       else {
-        console.log(`User data: `, userData);
         userData.forEach(async (user) => {
           const { idUser, Name, Email, Password } = user;
           const compareResult = await comparePasswords(password, Password);
-          console.log(`Compare results: ${compareResult}`);
           if (compareResult) {
             const authJwt = await signJwtLoginToken(idUser);
             res.cookie("Authentication", `Bearer ${authJwt}`, {
