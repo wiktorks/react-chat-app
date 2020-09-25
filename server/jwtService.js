@@ -1,5 +1,10 @@
-const { sign, verify } = require("jsonwebtoken");
+const { sign } = require("jsonwebtoken");
+const secret = "sekret do wpisania na później";
 
-module.exports = signJwtLoginToken = (payload) => {
-  return sign({userId: payload}, 'sekret do wpisania na później', {expiresIn: '1d'})
-}
+const signJwtLoginToken = (payload) => {
+  return sign({ userId: payload }, "sekret do wpisania na później", {
+    expiresIn: "1d",
+  });
+};
+
+module.exports = { secret, signJwtLoginToken };

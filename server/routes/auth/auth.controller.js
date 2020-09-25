@@ -1,5 +1,9 @@
 const { executeQuery } = require("../../database");
-const { passwordService } = require("../../utils");
+const {
+  hashPassword,
+  comparePasswords,
+} = require("../../utils").passwordService;
+const { signJwtLoginToken } = require("../../jwtService");
 
 const registerController = async (req, res, next) => {
   try {
@@ -13,7 +17,7 @@ const registerController = async (req, res, next) => {
         .send({ status: "error", message: "Passwords don't match" });
     } else {
       const userData = await executeQuery(
-        `SELECT * FROM  Users WHERE Name = '${name}' OR Email = '${email}'`
+        `SELECT * FROM  users WHERE Name = '${name}' OR Email = '${email}'`
       );
 
       if (userData.length) {
@@ -30,9 +34,9 @@ const registerController = async (req, res, next) => {
             });
         });
       } else {
-        const passwordHash = await passwordService.hashPassword(password);
+        const passwordHash = await hashPassword(password);
         await executeQuery(
-          `INSERT INTO Users (Name, Email, Password) VALUES ('${name}', '${email}', '${passwordHash}')`
+          `INSERT INTO users (Name, Email, Password) VALUES ('${name}', '${email}', '${passwordHash}')`
         );
         res.status(200).send({
           status: "success",
@@ -46,12 +50,53 @@ const registerController = async (req, res, next) => {
   }
 };
 
-const loginController = (req, res, next) => {
-  const { name, password } = req.body;
+const loginController = async (req, res, next) => {
+  try {
+    const { name, password } = req.body;
 
-  if (!name || !password)
-    res.status(400).send({ status: "failure", message: "Missing credentials" });
-  else {
+    if (!name || !password)
+      res
+        .status(400)
+        .send({ status: "failure", message: "Missing credentials" });
+    else {
+      const userData = await executeQuery(
+        `SELECT * FROM users WHERE name='${name}'`
+      );
+      if (userData.length === 0)
+        res
+          .status(401)
+          .json({ status: "error", message: "User does not exists" });
+      else {
+        console.log(`User data: `, userData);
+        userData.forEach(async (user) => {
+          const { idUser, Name, Email, Password } = user;
+          const compareResult = await comparePasswords(password, Password);
+          console.log(`Compare results: ${compareResult}`);
+          if (compareResult) {
+            const authJwt = await signJwtLoginToken(idUser);
+            res.cookie("Authentication", `Bearer ${authJwt}`, {
+              httpOnly: true,
+            });
+            res.status(200).json({
+              message: "Success",
+              user: {
+                id: idUser,
+                name: Name,
+                email: Email,
+              },
+            });
+          } else {
+            res
+              .status(401)
+              .json({ status: "error", message: "Wrong password" });
+          }
+        });
+        return;
+      }
+    }
+  } catch (e) {
+    console.log("Error: ", e);
+    res.status(500).send({ status: "error", message: "Internal server error" });
   }
 };
 
