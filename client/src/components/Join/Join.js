@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Join.css";
+import "../Authentication/Login"
 
 const Join = () => {
 
-    const group = "nazwa grupy z bazy danych";
-    const name = "pobrane imię";
+    const group = "JavaScript";
+    const group1 = "TestChatRoom"
+    const group2 = "JavaFans"
+    const name = "name"
 
     return (
         <div className="joinOuterContainer">
@@ -20,8 +23,8 @@ const Join = () => {
                     to={`/chat?group=${group}`}
                 >
                     <input type="submit" value={group} />
-                    <input type="submit" value={group} />
-                    <input type="submit" value={group} />
+                    <input type="submit" value={group1} />
+                    <input type="submit" value={group2} />
                 </Link>
             </div>
         </div>
