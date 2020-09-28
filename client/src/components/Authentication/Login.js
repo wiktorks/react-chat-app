@@ -15,13 +15,13 @@ class Login extends Component {
         };
     }
 
-    redirectToMainPage = () => {
+    redirectToJoinPage = () => {
         this.setState({redirect: true});
     }
 
     componentDidMount() {
         if(authService.isAuthenticated()) {
-            this.redirectToMainPage();
+            this.redirectToJoinPage();
         }
     }
 
@@ -34,20 +34,21 @@ class Login extends Component {
         if (!(name && password)) return;
 
         const response = await authService.login(name, password);
-        if(response.success) {
+        if(response.message === "Success") {
             const user = {
-                id: response.userId,
+                id: response.id,
                 name: response.name,
                 email: response.email,
                 token: response.token
             }
-            authService.authenticateUser(user);
-            this.redirectToMainPage();
+
+            await authService.authenticateUser(user);
+            this.redirectToJoinPage();
         } else {
             if(response.status === '404') {
                 alert('Page not found');
             } else {
-                alert('Wrong credentials');
+                alert('Wrong credentials!');
             }
         }
 
@@ -60,9 +61,10 @@ class Login extends Component {
 
     render() {
         const { name, password, submitted, redirect } = this.state;
+        console.log("user:", this.state)
 
         if(redirect) {
-            return (<Redirect to='/signedin' />);
+            return (<Redirect to='/join' />);
         }
 
         return (

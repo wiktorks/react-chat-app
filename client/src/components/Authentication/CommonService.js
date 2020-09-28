@@ -13,5 +13,4 @@ const getToken = () => {
     return token;
 }
 
-
 export const commonService = { checkStatus, getToken };
